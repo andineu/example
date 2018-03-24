@@ -1,3 +1,7 @@
+import com.sun.deploy.util.ArrayUtil;
+
+import java.util.Arrays;
+
 public class Bug {
 	/**
 	 * Find the minimum in the referenced array.
@@ -6,9 +10,14 @@ public class Bug {
 	 * @throws IllegalArgumentException if referenced array is null or empty
 	 */
 	public static int minimum(int[] a) throws IllegalArgumentException {
-		int m = a[0];
-		for (int i = 1; i < a.length; i++) {
-			if (a[i] > m) {
+		int m = Integer.MAX_VALUE;
+
+		if (a == null || a.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] < m) {
 				m = a[i];
 			}
 		}
